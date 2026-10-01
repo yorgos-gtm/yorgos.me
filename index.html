@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yorgos Katsouris — RevOps & GTM Automation</title>
-    <meta name="description" content="Revenue Operations & GTM Automation. I build the systems, workflows, and data infrastructure that make go-to-market teams work.">
+    <title>Yorgos Katsouris — GTM Engineering</title>
+    <meta name="description" content="GTM engineer at Dexory. I build the systems that make go-to-market work: deal intelligence, data infrastructure and AI agents.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +14,7 @@
             --bg: #F5F3EF;
             --text: #1A1A1A;
             --text-muted: #6B6560;
+            --rule: rgba(26, 26, 26, 0.1);
             --accent: #E8520E;
             --accent-dim: rgba(232, 82, 14, 0.08);
             --mono: 'JetBrains Mono', monospace;
@@ -28,7 +29,6 @@
             font-family: var(--sans);
             min-height: 100vh;
             display: flex;
-            align-items: center;
             justify-content: center;
             overflow-x: hidden;
         }
@@ -50,17 +50,38 @@
             z-index: 1;
             max-width: 800px;
             width: 100%;
-            padding: 3rem 2rem;
+            padding: 6rem 2rem 5rem;
+        }
+
+        .reveal { opacity: 0; animation: slideUp 0.7s ease forwards; }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            letter-spacing: 0.06em;
+            margin-bottom: 2.5rem;
+            animation-delay: 0.1s;
+        }
+
+        .status { display: inline-flex; align-items: center; gap: 0.5rem; }
+
+        .pulse {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 0 rgba(232, 82, 14, 0.5);
+            animation: pulse 2.4s ease-out infinite;
         }
 
         .name {
-            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-size: clamp(3.5rem, 11vw, 7rem);
             font-weight: 700;
-            line-height: 1;
-            letter-spacing: -0.03em;
-            margin-bottom: 0.25rem;
-            opacity: 0;
-            animation: slideUp 0.7s ease forwards 0.2s;
+            line-height: 0.95;
+            letter-spacing: -0.045em;
+            margin-bottom: 0.75rem;
+            animation-delay: 0.2s;
         }
 
         .name span { color: var(--accent); }
@@ -71,43 +92,94 @@
             font-weight: 500;
             color: var(--text-muted);
             margin-bottom: 2.5rem;
-            opacity: 0;
-            animation: slideUp 0.7s ease forwards 0.4s;
+            animation-delay: 0.35s;
         }
 
         .bio {
-            font-size: 1.15rem;
-            line-height: 1.75;
-            color: var(--text);
+            font-size: 1.2rem;
+            line-height: 1.7;
             font-weight: 300;
-            max-width: 660px;
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: slideUp 0.7s ease forwards 0.6s;
+            max-width: 640px;
+            margin-bottom: 4rem;
+            animation-delay: 0.5s;
         }
 
-        .bio strong { font-weight: 600; color: var(--text); }
+        .bio strong { font-weight: 600; }
 
-        .trace {
+        .label {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        section { margin-bottom: 4rem; }
+
+        /* Currently building */
+        .layers { border-top: 1px solid var(--text); animation-delay: 0.65s; }
+
+        .layer {
+            display: grid;
+            grid-template-columns: 2.5rem 7rem 1fr;
+            align-items: baseline;
+            padding: 1.1rem 0;
+            border-bottom: 1px solid var(--rule);
+            transition: padding 0.25s ease;
+        }
+
+        .layer:hover { padding-left: 0.5rem; }
+
+        .layer .n { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); font-weight: 700; }
+        .layer .t { font-size: 1.35rem; font-weight: 600; letter-spacing: -0.02em; }
+        .layer .d { color: var(--text-muted); font-size: 1.02rem; }
+
+        .layers-note {
             font-family: var(--mono);
             font-size: 0.78rem;
             color: var(--text-muted);
-            line-height: 1.9;
-            margin-bottom: 2.5rem;
-            opacity: 0;
-            animation: slideUp 0.7s ease forwards 0.75s;
+            margin-top: 1rem;
         }
 
-        .trace .co { color: var(--text); font-weight: 500; }
-        .trace .sep { color: var(--accent); margin: 0 0.35rem; }
+        .layers-note a { color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; }
+
+        /* History */
+        .history { border-top: 1px solid var(--text); animation-delay: 0.8s; }
+
+        .role {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            align-items: baseline;
+            padding: 0.9rem 0;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .role .co { font-size: 1.15rem; font-weight: 600; letter-spacing: -0.01em; }
+        .role .what { font-family: var(--mono); font-size: 0.78rem; color: var(--text-muted); text-align: right; }
+
+        .role.now .co::after {
+            content: 'now';
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: var(--accent);
+            background: var(--accent-dim);
+            border: 1px solid rgba(232, 82, 14, 0.15);
+            border-radius: 4px;
+            padding: 0.15rem 0.4rem;
+            margin-left: 0.6rem;
+            vertical-align: 0.2em;
+        }
 
         .tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-bottom: 2.5rem;
-            opacity: 0;
-            animation: slideUp 0.7s ease forwards 0.9s;
+            margin-bottom: 3rem;
+            animation-delay: 0.95s;
         }
 
         .tag {
@@ -123,19 +195,14 @@
             transition: all 0.2s ease;
         }
 
-        .tag:hover {
-            background: var(--accent);
-            color: white;
-            border-color: var(--accent);
-        }
+        .tag:hover { background: var(--accent); color: white; border-color: var(--accent); }
 
         .links {
             display: flex;
             gap: 1.5rem;
             align-items: center;
             flex-wrap: wrap;
-            opacity: 0;
-            animation: slideUp 0.7s ease forwards 1.05s;
+            animation-delay: 1.05s;
         }
 
         .links a {
@@ -152,11 +219,7 @@
             transition: all 0.2s ease;
         }
 
-        .links a:hover {
-            color: var(--accent);
-            border-bottom-color: var(--accent);
-        }
-
+        .links a:hover { color: var(--accent); border-bottom-color: var(--accent); }
         .links a svg { width: 16px; height: 16px; }
 
         .corner-accent {
@@ -170,71 +233,88 @@
             pointer-events: none;
         }
 
-        .sig {
-            position: fixed;
-            bottom: 1.5rem;
-            right: 2rem;
-            font-family: var(--mono);
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            opacity: 0.4;
-            letter-spacing: 0.08em;
-        }
-
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(232, 82, 14, 0.5); }
+            70% { box-shadow: 0 0 0 9px rgba(232, 82, 14, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(232, 82, 14, 0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { animation: none; opacity: 1; }
+            .pulse { animation: none; }
+        }
+
         @media (max-width: 600px) {
-            .container { padding: 2rem 1.25rem; }
-            .bio { font-size: 1.05rem; }
-            .trace { font-size: 0.72rem; }
+            .container { padding: 3rem 1.25rem 3rem; }
+            .bio { font-size: 1.08rem; }
+            .layer { grid-template-columns: 2rem 1fr; }
+            .layer .d { grid-column: 2; margin-top: 0.2rem; }
+            .role { grid-template-columns: 1fr; gap: 0.2rem; }
+            .role .what { text-align: left; }
             .links { flex-direction: column; gap: 0.75rem; align-items: flex-start; }
-            .sig { display: none; }
         }
     </style>
 </head>
 <body>
     <div class="corner-accent"></div>
 
-    <div class="container">
-        <h1 class="name">Yorgos<span>.</span></h1>
-
-        <p class="tagline">RevOps & GTM Automation</p>
-
-        <p class="bio">
-            I build the <strong>systems that make go-to-market work</strong> — revenue data infrastructure,
-            orchestration workflows, BI dashboards that surface the story behind the numbers,
-            and AI agents that automate what used to take hours. Currently RevOps Manager
-            at <strong>Welcome to the Jungle</strong>, previously Sr. CS & RevOps
-            at <strong>Otta</strong>.
-        </p>
-
-        <div class="trace">
-            <span class="co">Welcome to the Jungle</span> RevOps
-            <span class="sep">←</span>
-            <span class="co">Otta</span> Sr. CS & RevOps
-            <span class="sep">←</span>
-            <span class="co">Screenbreak</span> Co-founder
-            <span class="sep">←</span>
-            <span class="co">Airbnb</span> CS & Sales Ops
+    <main class="container">
+        <div class="meta reveal">
+            <span class="status"><span class="pulse"></span>Building at Dexory</span>
+            <span id="clock">London</span>
         </div>
 
-        <div class="tags">
+        <h1 class="name reveal">Yorgos<span>.</span></h1>
+
+        <p class="tagline reveal">GTM Engineering</p>
+
+        <p class="bio reveal">
+            I work where <strong>commercial meets engineering</strong>: enough sales sense to know
+            what moves pipeline, enough technical depth to build the systems that move it.
+            Today that means deal intelligence, warehouse maps, hiring signals and AI agents
+            for the GTM team at <strong>Dexory</strong>.
+        </p>
+
+        <section>
+            <p class="label">How I build</p>
+            <div class="layers reveal">
+                <div class="layer"><span class="n">01</span><span class="t">Core</span><span class="d">Turns messy calls, emails and files into one clean timeline.</span></div>
+                <div class="layer"><span class="n">02</span><span class="t">Engine</span><span class="d">Turns the timeline into facts, and recalculates only what changed.</span></div>
+                <div class="layer"><span class="n">03</span><span class="t">Project</span><span class="d">Asks the question: pipeline review, handover, cohort view.</span></div>
+            </div>
+            <p class="layers-note">Fix it once, and everything downstream gets the fix. <a href="https://www.linkedin.com/in/yorgos-katsouris/recent-activity/all/" target="_blank" rel="noopener">Read the series</a></p>
+        </section>
+
+        <section>
+            <p class="label">Recent history</p>
+            <div class="history reveal">
+                <div class="role now"><span class="co">Dexory</span><span class="what">GTM Engineer</span></div>
+                <div class="role"><span class="co">Welcome to the Jungle</span><span class="what">RevOps Manager</span></div>
+                <div class="role"><span class="co">Otta</span><span class="what">Sr. CS &amp; RevOps</span></div>
+                <div class="role"><span class="co">Screenbreak</span><span class="what">Co-founder</span></div>
+                <div class="role"><span class="co">Airbnb</span><span class="what">CS &amp; Sales Ops</span></div>
+            </div>
+        </section>
+
+        <div class="tags reveal">
+            <span class="tag">Claude Code</span>
             <span class="tag">HubSpot</span>
-            <span class="tag">SQL</span>
             <span class="tag">Cargo</span>
+            <span class="tag">Python</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Supabase</span>
+            <span class="tag">Vercel</span>
             <span class="tag">BigQuery</span>
-            <span class="tag">Metabase</span>
-            <span class="tag">Apollo</span>
-            <span class="tag">Make.com</span>
             <span class="tag">Salesforce</span>
-            <span class="tag">Workflow Automation</span>
             <span class="tag">AI Agents</span>
         </div>
 
-        <div class="links">
+        <div class="links reveal">
             <a href="https://www.linkedin.com/in/yorgos-katsouris/" target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
                 LinkedIn
@@ -244,8 +324,16 @@
                 hello@yorgos.me
             </a>
         </div>
-    </div>
+    </main>
 
-    <div class="sig">yorgos.me</div>
+    <script>
+        const clock = document.getElementById('clock');
+        const tick = () => {
+            const t = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit' }).format(new Date());
+            clock.textContent = 'London ' + t;
+        };
+        tick();
+        setInterval(tick, 30000);
+    </script>
 </body>
 </html>
